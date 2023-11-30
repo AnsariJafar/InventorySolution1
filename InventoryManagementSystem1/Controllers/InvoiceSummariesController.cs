@@ -18,17 +18,32 @@ namespace InventoryManagementSystem1.Controllers
         // GET: InvoiceSummaries
         public ActionResult Index()
         {
-            var list = db.InvoiceSummarys.ToList();
-            var newList = list.Select(x =>new InvoiceSummaryVM() {
-            EntryDate=x.EntryDate.ToString("D"),
-            EntryId=x.EntryID,
-            InvoiceAmount=x.AmountInGST.ToString("C"),
-            InvoiceDate=x.InvoiceDate.ToString("D"),
-            InvoiceNumber=x.InvoiceNumber,
-            OrderNumber=x.PurchaseOrderNumber,
-            SupplierName="Test Supplier"
-            });
-            return View(newList);
+            var finalList = from inv in db.InvoiceSummarys.ToList()
+                            join sup in db.Suppliers.ToList() on inv.SupplierId equals sup.SupplierID
+                            select new InvoiceSummaryVM()
+                            {
+                                EntryDate = inv.EntryDate.ToString("D"),
+                                EntryId = inv.EntryID,
+                                InvoiceAmount = inv.AmountInGST.ToString("C"),
+                                InvoiceDate = inv.InvoiceDate.ToString("D"),
+                                InvoiceNumber = inv.InvoiceNumber,
+                                OrderNumber = inv.PurchaseOrderNumber,
+                                SupplierName = sup.SupplierName
+                            };
+
+
+
+            //var list = db.InvoiceSummarys.ToList();
+            //var newList = list.Select(x =>new InvoiceSummaryVM() {
+            //EntryDate=x.EntryDate.ToString("D"),
+            //EntryId=x.EntryID,
+            //InvoiceAmount=x.AmountInGST.ToString("C"),
+            //InvoiceDate=x.InvoiceDate.ToString("D"),
+            //InvoiceNumber=x.InvoiceNumber,
+            //OrderNumber=x.PurchaseOrderNumber,
+            //SupplierName=sup.SupplierName
+            //});
+            return View(finalList);
         }
 
         // GET: InvoiceSummaries/Details/5
