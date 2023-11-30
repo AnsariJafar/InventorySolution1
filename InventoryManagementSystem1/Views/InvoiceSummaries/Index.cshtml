@@ -1,4 +1,4 @@
-﻿@model IEnumerable<InventoryManagementSystem1.Models.InvoiceSummary>
+﻿@model IEnumerable<InventoryManagementSystem1.Models.InvoiceSummaryVM>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SupplierId)
+                @Html.DisplayNameFor(model => model.SupplierName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PurchaseOrderNumber)
+                @Html.DisplayNameFor(model => model.OrderNumber)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EntryDate)
@@ -28,14 +28,9 @@
                 @Html.DisplayNameFor(model => model.InvoiceDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AmountInGST)
+                @Html.DisplayNameFor(model => model.InvoiceAmount)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notes)
-            </th>
+            
             <th>Actions</th>
         </tr>
     </thead>
@@ -45,10 +40,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SupplierId)
+                    @Html.DisplayFor(modelItem => item.SupplierName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PurchaseOrderNumber)
+                    @Html.DisplayFor(modelItem => item.OrderNumber)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EntryDate)
@@ -60,21 +55,16 @@
                     @Html.DisplayFor(modelItem => item.InvoiceDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.AmountInGST)
+                    @Html.DisplayFor(modelItem => item.InvoiceAmount)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-                <td>
+
+               <td>
 
 
-                    <a href="@Url.Action("Edit","InvoiceSummaries",new { id = item.EntryID })"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="@Url.Action("Edit","InvoiceSummaries",new { id = item.EntryId })"><span class="glyphicon glyphicon-pencil"></span></a>
                     
 
-                    <a href="@Url.Action("Delete","InvoiceSummaries",new { id = item.EntryID })"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="@Url.Action("Delete","InvoiceSummaries",new { id = item.EntryId })"><span class="glyphicon glyphicon-trash"></span></a>
 
                 </td>
             </tr>

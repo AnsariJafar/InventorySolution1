@@ -133,6 +133,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\InvoiceSummary.cs" />
+    <Compile Include="Models\InvoiceSummaryVM.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
