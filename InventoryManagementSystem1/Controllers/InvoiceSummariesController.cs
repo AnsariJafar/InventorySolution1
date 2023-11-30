@@ -18,7 +18,17 @@ namespace InventoryManagementSystem1.Controllers
         // GET: InvoiceSummaries
         public ActionResult Index()
         {
-            return View(db.InvoiceSummarys.ToList());
+            var list = db.InvoiceSummarys.ToList();
+            var newList = list.Select(x =>new InvoiceSummaryVM() {
+            EntryDate=x.EntryDate.ToString("D"),
+            EntryId=x.EntryID,
+            InvoiceAmount=x.AmountInGST.ToString("C"),
+            InvoiceDate=x.InvoiceDate.ToString("D"),
+            InvoiceNumber=x.InvoiceNumber,
+            OrderNumber=x.PurchaseOrderNumber,
+            SupplierName="Test Supplier"
+            });
+            return View(newList);
         }
 
         // GET: InvoiceSummaries/Details/5
